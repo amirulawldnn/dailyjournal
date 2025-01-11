@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -26,18 +25,29 @@ if (!isset($_SESSION['username'])) {
     rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
     crossorigin="anonymous"
-    />
-    <style> 
-        #content {
-            min-height: 460px;
-        } 
+    /> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>  
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+        body {
+            margin-bottom: 100px; /* Margin bottom by footer height */
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px; /* Set the fixed height of the footer here */ 
+        }
     </style>
 </head>
 <body>
     <!-- nav begin -->
     <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top bg-danger-subtle">
     <div class="container">
-        <a class="navbar-brand" href="">My Daily Journal</a>
+        <a class="navbar-brand" target="_blank" href=".">My Daily Journal</a>
         <button
         class="navbar-toggler"
         type="button"
@@ -57,11 +67,18 @@ if (!isset($_SESSION['username'])) {
             <li class="nav-item">
                 <a class="nav-link" href="admin.php?page=article">Article</a>
             </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php?page=galery">Gallery</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?page=index"><b>Homepage</b></a>
+            </li> 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $_SESSION['username']?>
                 </a>
                 <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="admin.php?page=profile">Profile  <?= $_SESSION['username']?></a></li> 
                     <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
                 </ul>
             </li> 
@@ -71,7 +88,7 @@ if (!isset($_SESSION['username'])) {
     </nav>
     <!-- nav end -->
     <!-- content begin -->
-    <!-- content begin -->
+   <!-- content begin -->
 <section id="content" class="p-5">
     <div class="container">
         <?php
@@ -92,7 +109,7 @@ if (!isset($_SESSION['username'])) {
 <!-- content end -->
     <!-- content end -->
     <!-- footer begin -->
-    <footer class="text-center p-5 bg-danger-subtle fixed-bottom">
+    <footer class="text-center p-5 bg-danger-subtle">
     <div>
         <a href="https://www.instagram.com/udinusofficial"
         ><i class="bi bi-instagram h2 p-2 text-dark"></i
@@ -104,7 +121,7 @@ if (!isset($_SESSION['username'])) {
         ><i class="bi bi-whatsapp h2 p-2 text-dark"></i
         ></a>
     </div>
-    <div>Aprilyani Nur Safitri &copy; 2023</div>
+    <div>Amirul Awaludin Hidayat &copy; 2025</div>
     </footer>
     <!-- footer end -->
     <script

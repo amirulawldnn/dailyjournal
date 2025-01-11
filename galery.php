@@ -1,7 +1,7 @@
 <div class="container">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah">
-         <i class="bi bi-plus-lg"></i> Tambah Article
+         <i class="bi bi-plus-lg"></i> Tambah galery
     </button>
     <div class="row">
         <div class="table-responsive">
@@ -17,8 +17,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM article ORDER BY tanggal DESC";
-                    $hasil = $conn->query($sql);
+                    $sql = "SELECT * FROM galery ORDER BY tanggal DESC";
+                    $hasil = $conn->query(query: $sql);
 
                     $no = 1;
                     while ($row = $hasil->fetch_assoc()) {
@@ -51,7 +51,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Article</h1>
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Galery</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form method="post" action="" enctype="multipart/form-data">
@@ -98,7 +98,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Hapus Article</h1>
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Hapus Galery</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form method="post" action="" enctype="multipart/form-data">
@@ -132,7 +132,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Article</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Galery</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="post" action="" enctype="multipart/form-data">
@@ -187,7 +187,7 @@ if (isset($_POST['simpan'])) {
 		        //jika true maka message berisi pesan error, tampilkan dalam alert
             echo "<script>
                 alert('" . $cek_upload['message'] . "');
-                document.location='admin.php?page=article';
+                document.location='admin.php?page=galery';
             </script>";
             die;
         }
@@ -206,7 +206,7 @@ if (isset($_POST['simpan'])) {
             unlink("img/" . $_POST['gambar_lama']);
         }
 
-        $stmt = $conn->prepare("UPDATE article 
+        $stmt = $conn->prepare("UPDATE galery 
                                 SET 
                                 judul =?,
                                 isi =?,
@@ -219,7 +219,7 @@ if (isset($_POST['simpan'])) {
         $simpan = $stmt->execute();
     } else {
 		    //jika tidak ada id, lakukan insert data baru
-        $stmt = $conn->prepare("INSERT INTO article (judul,isi,gambar,tanggal,username)
+        $stmt = $conn->prepare("INSERT INTO galery (judul,isi,gambar,tanggal,username)
                                 VALUES (?,?,?,?,?)");
 
         $stmt->bind_param("sssss", $judul, $isi, $gambar, $tanggal, $username);
@@ -229,12 +229,12 @@ if (isset($_POST['simpan'])) {
     if ($simpan) {
         echo "<script>
             alert('Simpan data sukses');
-            document.location='admin.php?page=article';
+            document.location='admin.php?page=galery';
         </script>";
     } else {
         echo "<script>
             alert('Simpan data gagal');
-            document.location='admin.php?page=article';
+            document.location='admin.php?page=galery';
         </script>";
     }
 
@@ -252,7 +252,7 @@ if (isset($_POST['hapus'])) {
         unlink("img/" . $gambar);
     }
 
-    $stmt = $conn->prepare("DELETE FROM article WHERE id =?");
+    $stmt = $conn->prepare("DELETE FROM galery WHERE id =?");
 
     $stmt->bind_param("i", $id);
     $hapus = $stmt->execute();
@@ -260,12 +260,12 @@ if (isset($_POST['hapus'])) {
     if ($hapus) {
         echo "<script>
             alert('Hapus data sukses');
-            document.location='admin.php?page=article';
+            document.location='admin.php?page=galery';
         </script>";
     } else {
         echo "<script>
             alert('Hapus data gagal');
-            document.location='admin.php?page=article';
+            document.location='admin.php?page=galery';
         </script>";
     }
 
